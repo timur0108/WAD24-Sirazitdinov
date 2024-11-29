@@ -1,0 +1,31 @@
+{
+  "name": "exam-example-wad2024",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "server": "nodemon server/server.js",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "core-js": "^3.8.3",
+    "cors": "^2.8.5",
+    "exam-example-wad2024": "file:",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.7",
+    "pg": "^8.13.1",
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.3",
+    "vuex": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "cypress": "^13.16.0"
+  }
+}
