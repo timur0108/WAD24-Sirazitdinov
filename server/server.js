@@ -27,3 +27,18 @@ app.get('/api/courses', async(req, res) => {
     }
 });
 
+app.get('/api/courses/:id', async(req,res) => {
+    try{
+        console.log("get a course with route parameter  request has arrived");
+        const { id } = req.params;
+        console.log(req.params.id);
+        console.log(id);
+        const courses = await pool.query(
+            "SELECT * FROM courses WHERE id = $1", [id]
+        );
+        res.json(courses.rows[0]);
+    } catch(err) {
+        console.error(err.message);
+    }
+});
+
