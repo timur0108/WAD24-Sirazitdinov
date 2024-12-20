@@ -23,11 +23,11 @@
       </div>
       <div class="field">
         <label>Number of Groups:</label>
-        <input v-model="course.groupsnumbers" type="number" />
+        <input v-model="course.groupsnumbers" type="number" :class="{'invalid-group': isInvalidGroupCount}"/>
       </div>
       
     </div>
-    <button @click="updateCourse" class="update-btn">Update</button>
+    <button @click="updateCourse" class="update-btn" :disabled="isUpdateDisabled">Update</button>
     
      
   </div>
@@ -57,6 +57,15 @@ export default {
       const registered = parseInt(this.course.registered, 10) || 0;
       return max - registered; 
     },
+    isInvalidGroupCount() {
+      const registered = parseInt(this.course.registered, 10) || 0;
+      const requiredGroups = Math.ceil(registered/30);
+      const availableGroups = parseInt(this.course.groupsnumbers, 10) || 0;
+      return requiredGroups > availableGroups;
+    },
+    isUpdateDisabled() {
+      return this.isInvalidGroupCount;
+    }
   },
   methods: {
     fetchACourse(id) {
@@ -98,6 +107,13 @@ export default {
   text-align: left;
   padding: 40px;
   border-radius: 10px;
+}
+.update-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.invalid-group {
+  background-color: red;
 }
 .update-btn {
   
