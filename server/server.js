@@ -42,3 +42,18 @@ app.get('/api/courses/:id', async(req,res) => {
     }
 });
 
+app.put('/api/courses/:id', async(req, res) => {
+    try {
+        console.log("put arrived");
+        const {id} = req.params;
+        const course = req.body;
+
+        const updateCourse = await pool.query(
+            "UPDATE courses SET (coursename, coursecode, max, registered, available, groupsnumbers, description) = ($2, $3, $4, $5, $6, $7, $8) WHERE id = $1", [id, course.coursename, course.coursecode, course.max, course.registered, course.available, course.groupsnumbers, course.description]
+        );
+        res.json(updateCourse);
+    } catch(err) {
+        console.error(err.message);
+    }
+})
+

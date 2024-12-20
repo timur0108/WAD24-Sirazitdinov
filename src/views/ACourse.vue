@@ -3,29 +3,33 @@
     <div id="form">
       <div class="field">
         <label>Course Name:</label>
-        <p class="value">{{ course.coursename }}</p>
+        <input v-model="course.coursename" type="text" />
       </div>
       <div class="field">
         <label>Course Code:</label>
-        <p class="value">{{ course.coursecode }}</p>
+        <input v-model="course.coursecode" type="text" />
       </div>
       <div class="field">
         <label>Max Number of Students:</label>
-        <p class="value">{{ course.max }}</p>
+        <input v-model="course.max" type="number" />
       </div>
       <div class="field">
         <label>Registered Students:</label>
-        <p class="value">{{ course.registered }}</p>
+        <input v-model="course.registered" type="number" />
       </div>
       <div class="field">
         <label>Available Places:</label>
-        <p class="value">{{ course.available }}</p>
+        <input v-model="course.available" type="number" />
       </div>
       <div class="field">
         <label>Number of Groups:</label>
-        <p class="value">{{ course.groupsnumbers }}</p>
+        <input v-model="course.groupsnumbers" type="number" />
       </div>
+      
     </div>
+    <button @click="updateCourse" class="update-btn">Update</button>
+    
+     
   </div>
 
 </template>
@@ -53,6 +57,22 @@ export default {
       .then(response => response.json())
       .then((data) => (this.course = data))
       .catch((err) => console.log(err.message));
+    },
+    updateCourse() {
+      
+      fetch(`http://localhost:4000/api/courses/${this.$route.params.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.course)
+      })
+      .then(response => {
+        this.$router.push("/courses");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
     }
   },
   mounted() {
@@ -72,6 +92,17 @@ export default {
   padding: 40px;
   border-radius: 10px;
 }
+.update-btn {
+  
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
 .field {
   display: flex;
   flex-direction: column;
