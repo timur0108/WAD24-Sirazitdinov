@@ -6,7 +6,9 @@
     </div>
     <div class="field">
       <label>Code:</label>
-      <p>{{ course.coursecode }}</p>
+      <p>
+        <a :href="`/ACourse/${course.id}`">{{ course.coursecode }}</a>
+      </p>
     </div>
     <div class="field">
       <label>Max number of students:</label>
