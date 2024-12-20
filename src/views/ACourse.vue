@@ -1,14 +1,11 @@
 <template>
 <div class="A Course">
     <div id="form">
-      <div class="field">
-        <label>Course Name:</label>
-        <input v-model="course.coursename" type="text" />
+      <div class="header-row">
+        <h2>{{ course.coursename }} - {{ course.coursecode }} </h2>
+        
       </div>
-      <div class="field">
-        <label>Course Code:</label>
-        <input v-model="course.coursecode" type="text" />
-      </div>
+      
       <div class="field">
         <label>Max Number of Students:</label>
         <input v-model="course.max" type="number" />
