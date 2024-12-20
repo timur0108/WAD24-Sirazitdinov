@@ -1,7 +1,7 @@
 <template>
 <div class="A Course">
     <div id="form">
-
+        
     </div>
   </div>
 

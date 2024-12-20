@@ -3,11 +3,11 @@ const express = require('express');
 const pool = require('./database');
 const cors = require('cors')
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const app = express();
 
 
-app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
+app.use(cors({ origin: 'http://localhost:8082', credentials: true }));
 app.use(express.json());
 
 app.listen(port, () => {
