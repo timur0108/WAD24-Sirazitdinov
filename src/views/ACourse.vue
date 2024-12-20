@@ -19,7 +19,7 @@
       </div>
       <div class="field">
         <label>Available Places:</label>
-        <input v-model="course.available" type="number" />
+        <input v-model="course.available" type="number" readonly/>
       </div>
       <div class="field">
         <label>Number of Groups:</label>
@@ -45,11 +45,18 @@ export default {
         coursecode: "",
         max: "",
         registered: "",     
-        available: "", 
+        available: 0, 
         groupsnumbers: "",  
         description: ""
       },
     };
+  },
+  computed: {
+    availablePlaces() {
+      const max = parseInt(this.course.max, 10) || 0;
+      const registered = parseInt(this.course.registered, 10) || 0;
+      return max - registered; 
+    },
   },
   methods: {
     fetchACourse(id) {
@@ -59,7 +66,7 @@ export default {
       .catch((err) => console.log(err.message));
     },
     updateCourse() {
-      
+      this.course.available = this.availablePlaces;
       fetch(`http://localhost:4000/api/courses/${this.$route.params.id}`, {
         method: "PUT",
         headers: {
